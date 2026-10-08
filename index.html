@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>En memoria</title>
+  <meta name="description" content="Una página para recordar a nuestro perro, con sus fotos y su historia.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23b8692e'%3E%3Cellipse cx='32' cy='42' rx='14' ry='12'/%3E%3Cellipse cx='13' cy='27' rx='6' ry='8'/%3E%3Cellipse cx='24' cy='15' rx='6' ry='8'/%3E%3Cellipse cx='40' cy='15' rx='6' ry='8'/%3E%3Cellipse cx='51' cy='27' rx='6' ry='8'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Nunito:wght@300;400;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Sprite: huellita reutilizable -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="huella" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="42" rx="14" ry="12"/>
+      <ellipse cx="13" cy="27" rx="6" ry="8" transform="rotate(-18 13 27)"/>
+      <ellipse cx="24" cy="15" rx="6" ry="8" transform="rotate(-6 24 15)"/>
+      <ellipse cx="40" cy="15" rx="6" ry="8" transform="rotate(6 40 15)"/>
+      <ellipse cx="51" cy="27" rx="6" ry="8" transform="rotate(18 51 27)"/>
+    </symbol>
+  </svg>
+
+  <!-- Portada -->
+  <header class="portada" id="inicio">
+    <div class="portada__fotos" id="portada-fotos"></div>
+    <div class="portada__velo"></div>
+    <div class="portada__texto">
+      <svg class="portada__huella"><use href="#huella"/></svg>
+      <p class="portada__apodo" id="apodo"></p>
+      <h1 class="portada__nombre" id="nombre"></h1>
+      <p class="portada__fechas" id="fechas"></p>
+    </div>
+    <div class="portada__puntos" id="portada-puntos"></div>
+    <a class="portada__bajar" href="#historia" aria-label="Ir a su historia">
+      <span></span>
+    </a>
+  </header>
+
+  <main>
+    <!-- Historia -->
+    <section class="historia" id="historia">
+      <div class="encabezado revelar">
+        <h2 id="historia-titulo"></h2>
+        <div class="separador"><svg><use href="#huella"/></svg></div>
+        <p class="encabezado__intro" id="historia-intro"></p>
+      </div>
+      <div class="linea" id="capitulos"><span class="linea__progreso" aria-hidden="true"></span></div>
+    </section>
+
+    <!-- Galería -->
+    <section class="galeria" id="galeria">
+      <div class="encabezado revelar">
+        <h2 id="galeria-titulo"></h2>
+        <div class="separador"><svg><use href="#huella"/></svg></div>
+        <p class="encabezado__intro" id="galeria-subtitulo"></p>
+      </div>
+      <div class="mosaico" id="mosaico"></div>
+    </section>
+
+    <!-- Mensajes de la familia -->
+    <section class="familia" id="familia">
+      <div class="encabezado revelar">
+        <h2 id="familia-titulo"></h2>
+        <div class="separador"><svg><use href="#huella"/></svg></div>
+      </div>
+      <div class="carrusel revelar" id="carrusel">
+        <button class="carrusel__flecha carrusel__flecha--izq" id="carrusel-prev" aria-label="Mensaje anterior">&#8249;</button>
+        <div class="carrusel__ventana">
+          <div class="carrusel__pista" id="carrusel-pista"></div>
+        </div>
+        <button class="carrusel__flecha carrusel__flecha--der" id="carrusel-next" aria-label="Mensaje siguiente">&#8250;</button>
+        <div class="carrusel__puntos" id="carrusel-puntos"></div>
+      </div>
+    </section>
+
+    <!-- Despedida -->
+    <section class="cielo" id="cielo">
+      <div class="cielo__estrellas" id="estrellas"></div>
+      <svg class="cielo__huella"><use href="#huella"/></svg>
+      <div class="cielo__texto">
+        <p class="cielo__l1 revelar" id="desp-1"></p>
+        <p class="cielo__l2 revelar" id="desp-2"></p>
+        <p class="cielo__l3 revelar" id="desp-3"></p>
+        <svg class="cielo__corazon revelar" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.5 1.1 4.3 2.4.8-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/>
+        </svg>
+        <p class="cielo__firma revelar" id="desp-firma"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Visor de fotos -->
+  <div class="visor" id="visor" aria-hidden="true">
+    <button class="visor__cerrar" id="visor-cerrar" aria-label="Cerrar">&times;</button>
+    <button class="visor__flecha visor__flecha--izq" id="visor-prev" aria-label="Foto anterior">&#8249;</button>
+    <figure>
+      <img id="visor-img" alt="">
+      <figcaption id="visor-texto"></figcaption>
+    </figure>
+    <button class="visor__flecha visor__flecha--der" id="visor-next" aria-label="Foto siguiente">&#8250;</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/datos.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
