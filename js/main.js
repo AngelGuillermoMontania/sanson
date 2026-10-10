@@ -117,8 +117,25 @@
       </div>`;
     // Un capítulo puede tener una foto (foto) o varias que se alternan solas (fotos)
     const marcoFoto = art.querySelector(".polaroid__img");
-    const listaFotos = c.fotos || [c.foto];
+    const listaFotos = c.clips ? [] : c.fotos || [c.foto];
     listaFotos.forEach((f) => marcoFoto.appendChild(foto(f, c.titulo)));
+    // O videos cortos en lugar de foto (clips): se reproducen uno tras otro, en bucle
+    if (c.clips) {
+      const v = document.createElement("video");
+      let k = 0;
+      v.src = c.clips[0];
+      v.muted = true;
+      v.playsInline = true;
+      v.preload = "metadata";
+      v.loop = c.clips.length === 1;
+      v.addEventListener("ended", () => {
+        k = (k + 1) % c.clips.length;
+        v.src = c.clips[k];
+        v.play().catch(() => {});
+      });
+      marcoFoto.appendChild(v);
+      videos.push(v);
+    }
     if (listaFotos.length > 1) {
       marcoFoto.classList.add("polaroid__img--rota");
       let n = 0;
@@ -171,7 +188,9 @@
   [
     ...d.galeria.fotos,
     ...d.portada.map((f) => ({ foto: f })),
-    ...d.historia.capitulos.flatMap((c) => (c.fotos || [c.foto]).map((f) => ({ foto: f }))),
+    ...d.historia.capitulos
+      .filter((c) => !c.sinGaleria)
+      .flatMap((c) => (c.fotos || [c.foto]).map((f) => ({ foto: f }))),
   ].forEach((g) => {
     if (!g.foto || vistas.has(g.foto)) return;
     vistas.add(g.foto);
@@ -295,6 +314,12 @@
     inicioX = null;
   });
   if (mensajes.length) { irA(0); reiniciarCarrusel(); }
+  // Con un solo mensaje no hacen falta flechas ni puntos
+  if (mensajes.length < 2) {
+    $("carrusel-prev").hidden = true;
+    $("carrusel-next").hidden = true;
+    puntosCar.style.display = "none";
+  }
 
   /* ---------- Estrellas ---------- */
   const cielo = $("estrellas");

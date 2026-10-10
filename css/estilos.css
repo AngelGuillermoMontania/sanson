@@ -251,6 +251,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; line-height
 .polaroid__img--rota > .activa { opacity: 1; }
 /* La foto conserva su propio formato; solo las muy altas se recortan (según su encuadre) */
 .polaroid__img img { width: 100%; height: auto; max-height: min(75vh, 640px); object-fit: cover; }
+.polaroid__img video { display: block; width: 100%; aspect-ratio: 9 / 16; max-height: min(75vh, 640px); object-fit: cover; background: var(--oscuro); }
 .con-gsap .polaroid__img > * { scale: 1.06; translate: 0 var(--py, 0%); }
 
 .capitulo__texto { max-width: 440px; }

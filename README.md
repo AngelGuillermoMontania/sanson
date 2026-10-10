@@ -13,6 +13,8 @@ Todo se edita en **`js/datos.js`**:
   Opcional: `video: "videos/archivo.mp4"` para agregar un video debajo del texto
   (se reproduce en silencio al estar en pantalla; se puede activar el sonido).
   En el texto, `\n\n` separa párrafos.
+  En lugar de una foto, un capítulo puede llevar `fotos: [...]` (varias fotos que se alternan solas)
+  o `clips: ["videos/a.mp4", "videos/b.mp4"]` (videos cortos dentro de la polaroid, uno tras otro).
 - `galeria.fotos`: el resto de las fotos (texto opcional)
 - `familia.mensajes`: el mensaje de cada integrante (foto opcional)
 - `despedida`: el mensaje final
